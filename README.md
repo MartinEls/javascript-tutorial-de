@@ -31,6 +31,8 @@ Assets required for the material reside in the same folder.
 
 ## Übersetzungskonventionen
 
+Bei Übersetzungen von IT-Themen ins Deutsche begegnet man immer wieder Eigennamen, die keine gute Übersetzung finden und deshalb im original stehen bleiben sollten. Für einige Wendungen gibt es aber durchaus gute Deutsche Entsprechungen. Die folgende Tabelle sammelt einige Zweifelsfälle um eine einheitliche Verwendung über alle Kapitel im Tutorial zu gewährleisten.
+
 | English | Deutsch |
 |---------|---------|
 | browser | Browser |
