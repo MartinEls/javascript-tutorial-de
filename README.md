@@ -37,6 +37,7 @@ Bei Übersetzungen von IT-Themen ins Deutsche begegnet man immer wieder Eigennam
 |---------|---------|
 | browser | Browser |
 | code | Code |
+| command | Befehl |
 | cookie | Cookie |
 | engine | Engine |
 | header | Header |
@@ -57,7 +58,7 @@ Bei Übersetzungen von IT-Themen ins Deutsche begegnet man immer wieder Eigennam
 
 [Code-Editoren](1-js/01-getting-started/2-code-editors/article.md)
 
-Developer console
+[Entwicklerkonsole](1-js/01-getting-started/3-devtools/article.md)
 
 ## JavaScript Fundamentals
 
