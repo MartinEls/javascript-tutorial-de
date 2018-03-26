@@ -53,7 +53,7 @@ Assets required for the material reside in the same folder.
 
 [Eine Einführung in JavaScript](1-js/01-getting-started/1-intro/article.md)
 
-Code editors
+[Code-Editoren](1-js/01-getting-started/2-code-editors/article.md)
 
 Developer console
 
