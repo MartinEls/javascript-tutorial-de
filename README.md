@@ -21,7 +21,7 @@ The type of the material is defined by the file inside the folder:
 
   - `index.md` stands for a chapter
   - `article.md` stands for an article
-  - `task.md` stands for a task (solution must be provided in `solution.md` file aswell)
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
 
 Each of these files starts from the `# Main header`.
 
@@ -29,11 +29,29 @@ Assets required for the material reside in the same folder.
 
 ----
 
+## Übersetzungskonventionen
+
+| English | Deutsch |
+|---------|---------|
+| browser | Browser |
+| code | Code |
+| cookie | Cookie |
+| engine | Engine |
+| header | Header |
+| low-level | systemnah |
+| page | Seite |
+| script | Script |
+| statement | Anweisung |
+| tag | Tag |
+| tool | Werkzeug |
+
+----
+
 # The JavaScript language - TOC
 
 ## An introduction
 
-An Introduction to JavaScript
+[Eine Einführung in JavaScript](1-js/01-getting-started/1-intro/article.md)
 
 Code editors
 

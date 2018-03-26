@@ -17,6 +17,7 @@
 .settings
 .tmproj
 .nvmrc
+.vscode
 sftp-config.json
 Thumbs.db
 
