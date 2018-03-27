@@ -20,37 +20,37 @@ Die Direktive erscheint wie ein String: `"use strict"` oder `'use strict'`. Wenn
 Wir werden bald Funktionen in JavaScript (eine Gruppierung von Anweisungen) kennen lernen. Hier nur soviel, dass wir `"use strict"` auch am Anfang einer Funktion verwenden können, anstatt für das ganze Script. Der `strict`-Modus ist dann nur für diese Funktion aktiviert. Für gewöhnlich verwendet man den `strict`-Modus aber für ein ganzes Script.
 
 ````warn header="Versichern Sie sich, dass \"use strict\" am Anfang des Scriptest steht"
-Please make sure that `"use strict"` is on the top of the script, otherwise the strict mode may not be enabled.
+Versichern Sie sich, dass `"use strict"` am Anfang des Scriptest steht, sonst wird der `strict`-Modus möglicherweise nicht aktiviert.
 
-There is no strict mode here:
+Hier wird der `strict`-Modus nicht verwendet:
 
 ```js no-strict
 alert("some code");
-// "use strict" below is ignored, must be on the top
+// "use strict" weiter unten wird ignoriert, es müsste am Anfang stehen
 
 "use strict";
 
-// strict mode is not activated
+// `strict`-Modus ist nicht aktiviert
 ```
 
-Only comments may appear above `"use strict"`.
+Lediglich Kommentare dürfen vor `"use strict"` auftreten.
 ````
 
-```warn header="There's no way to cancel `use strict`"
-There is no directive `"no use strict"` or alike, that would return the old behavior.
+```warn header="Man kann `use strict` nicht wieder abschalten"
+Es gibt keine Direktive `"no use strict"` oder ähnliches, die die alte Verhaltensweise wieder herstellt.
 
-Once we enter the strict mode, there's no return.
+Hat man in einem Script den `strict`-Modus eingeschaltet, gibt es dort kein Zurück mehr.
 ```
 
-## Always "use strict"
+## Verwenden Sie immer "use strict"
 
-The differences of `"use strict"` versus the "default" mode are still to be covered.
+Mit den genauen Unterschiede von `"use strict"` und dem alten "Default"-Modus müssen wir uns später noch genauer auseinandersetzen.
 
-In the next chapters, as we learn language features, we'll make notes about the differences of the strict mode. Luckily, there are not so many. And they actually make our life better.
+In den nächsten Kapiteln, wenn wir die Spracheigenschaften behandeln, werden wir immer wieder auf die Unterschiede hinweisen. Glücklicherweise gibt es nicht besonders viele und die, die es gibt machen unser Leben einfacher.
 
-At this point in time it's enough to know about it in general:
+Zum jetzigen Zeitpunkt genügt es uns das Folgende zu wissen:
 
-1. The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some built-in features. We'll see the details as we study.
-2. The strict mode is enabled by `"use strict"` at the top. Also there are several language features like "classes" and "modules" that enable strict mode automatically.
-3. The strict mode is supported by all modern browsers.
-4. It's always recommended to start scripts with `"use strict"`. All examples in this tutorial assume so, unless (very rarely) specified otherwise.
+1. Die `"use strict"`-Direktive schaltet die Engine in den "modernen" Modus und verändert das Verhalten einiger eingebauter Funktionen.
+2. Der `strict`-Modus wird mit `"use strict"` am Anfang des Scripts eingeschaltet. Es gibt auch einige Sprachfeatures wie Klassen und Module die den `strict`-Modus automatisch einschalten.
+3. Alle modernen Browser unterstützen den `strict`-Modus.
+4. Es ist grundsätzlich empfehlenswert Scripte mit `"use strict"` zu beginnen. Alle Beispiele in diesem Tutorial verwenden es; außer (sehr selten) es ist anders angegeben.
