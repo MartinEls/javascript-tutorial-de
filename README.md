@@ -31,7 +31,9 @@ Assets required for the material reside in the same folder.
 
 ## Übersetzungskonventionen
 
-Bei Übersetzungen von IT-Themen ins Deutsche begegnet man immer wieder Eigennamen, die keine gute Übersetzung finden und deshalb im original stehen bleiben sollten. Für einige Wendungen gibt es aber durchaus gute Deutsche Entsprechungen. Die folgende Tabelle sammelt einige Zweifelsfälle um eine einheitliche Verwendung über alle Kapitel im Tutorial zu gewährleisten.
+Bei Übersetzungen von IT-Themen ins Deutsche begegnet man immer wieder Eigennamen, die keine gute Übersetzung finden und deshalb im Original stehen bleiben sollten. Für einige Wendungen gibt es aber durchaus treffende Deutsche Entsprechungen. Die folgende Tabelle sammelt einige Zweifelsfälle um eine einheitliche Verwendung über alle Kapitel im Tutorial zu gewährleisten.
+
+Wortgruppen die im Englischen getrennt geschrieben werden, wie "HTML file", sollten im Deutschen mit einem Bindestrich verbunden werden (HTML-Datei) um eine gute Lesbarkeit zu gewährleisten. 
 
 | English | Deutsch |
 |---------|---------|
@@ -45,6 +47,7 @@ Bei Übersetzungen von IT-Themen ins Deutsche begegnet man immer wieder Eigennam
 | page | Seite |
 | script | Script |
 | statement | Anweisung |
+| string | String |
 | tag | Tag |
 | tool | Werkzeug |
 
@@ -66,7 +69,7 @@ Bei Übersetzungen von IT-Themen ins Deutsche begegnet man immer wieder Eigennam
 
 [Code-Struktur](1-js/02-first-steps/02-structure/article.md)
 
-The modern mode, "use strict"
+[Moderne Spracheigenschaften: "use strict"](1-js/02-first-steps/03-strict-mode/article.md)
 
 Variables
 

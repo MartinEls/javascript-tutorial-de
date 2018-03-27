@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Show an alert
+# Zeigen Sie eine Mitteilung an
 
-Create a page that shows a message "I'm JavaScript!".
+Erstellen Sie eine Webseite, die die Mitteilung "Hallo, JavaScript!" ausgibt.
 
-Do it in a sandbox, or on your hard drive, doesn't matter, just ensure that it works.
+Versuchen Sie es in einer Sandbox oder lokal auf Ihrem Rechner, ganz egal, hauptsache es funktioniert.
 
 [demo src="solution"]
 

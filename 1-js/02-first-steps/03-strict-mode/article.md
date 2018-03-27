@@ -1,30 +1,25 @@
-# The modern mode, "use strict"
+# Moderne Spracheigenschaften: "use strict"
 
-For a long time JavaScript was evolving without compatibility issues. New features were added to the language, but the old functionality did not change.
+Für eine lange Zeit entwickelte sich JavaScript ohne irgendwelche Kompatibilitätsprobleme aufzuwerfen. Neue Features wurden einfach hinzugefügt, doch die alte Funktionalität wurde nicht verändert.
 
-That had the benefit of never breaking existing code. But the downside was that any mistake or an imperfect decision made by JavaScript creators got stuck in the language forever.
+Das hatte den Vorteil, dass existierender Code immer lauffähig blieb. Nachteilig war, dass alle kleinen Schludereien oder fragwürdigen Designentscheidungen aus der frühen Zeit von JavaScript auf ewig der Sprache erhalten blieben.
 
-It had been so until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most modifications are off by default. One needs to enable them explicitly with a special directive `"use strict"`.
+Das blieb so bis 2009 der ECMAScript 5 Standard (ES5) erschien. Es wurden neue Features zur Sprache hinzugefügt und einige der existierenden Eigenschaften wurden verändert. Um alten Code lauffähig zu halten sind die meisten dieser Änderungen standardmäßig deaktiviert. Sie müssen erst durch eine spezielle Direktive eingeschaltet werden: `"use strict"`.
 
 ## "use strict"
 
-The directive looks like a string: `"use strict"` or `'use strict'`. When it is located on the top of the script, then the whole script works the "modern" way.
-
-For example
+Die Direktive erscheint wie ein String: `"use strict"` oder `'use strict'`. Wenn diese am Anfang des Scripts platziert wird, arbeitet das ganze Script nach den modernen Regeln, zum Beispiel:
 
 ```js
 "use strict";
 
-// this code works the modern way
+// Dieser Code arbeitet nach den modernen Regeln
 ...
 ```
 
-We will learn functions (a way to group commands) soon.
+Wir werden bald Funktionen in JavaScript (eine Gruppierung von Anweisungen) kennen lernen. Hier nur soviel, dass wir `"use strict"` auch am Anfang einer Funktion verwenden können, anstatt für das ganze Script. Der `strict`-Modus ist dann nur für diese Funktion aktiviert. Für gewöhnlich verwendet man den `strict`-Modus aber für ein ganzes Script.
 
-Looking ahead let's just note that `"use strict"` can be put at the start of a function (most kinds of functions) instead of the whole script. Then strict mode is enabled in that function only. But usually people use it for the whole script.
-
-
-````warn header="Ensure that \"use strict\" is at the top"
+````warn header="Versichern Sie sich, dass \"use strict\" am Anfang des Scriptest steht"
 Please make sure that `"use strict"` is on the top of the script, otherwise the strict mode may not be enabled.
 
 There is no strict mode here:
