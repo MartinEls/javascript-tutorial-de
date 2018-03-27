@@ -1,193 +1,182 @@
-# Bezier curve
+# Bézierkurven
 
-Bezier curves are used in computer graphics to draw shapes, for CSS animation and in many other places.
+Bézierkurven werden in der Computergrafik verwendet um Formen zu beschreiben, für CSS-Animationen und auch an vielen anderen Stellen.
 
-They are actually a very simple thing, worth to study once and then feel comfortable in the world of vector graphics and advanced animations.
+Sie sind letztlich eine recht einfache Konstruktion, die es sich einmal detailliert zu studieren lohnt um sich in der Welt der Vektorgrafik und der Animationen heimisch zu fühlen.
 
-## Control points
+## Kontrollpunkte
 
-A [bezier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) is defined by control points.
+Eine [Bézierkurve](https://de.wikipedia.org/wiki/Bézierkurve) wird durch Kontrollpunkte definiert.
 
-There may be 2, 3, 4 or more.
+Es kann 2, 3, 4 oder auch mehr geben.
 
-For instance, two points curve:
+Zum Beispiel sieht eine Bézierkurve mit zwei Kontrollpunkten wie folgt aus:
 
 ![](bezier2.png)
 
-Three points curve:
+Eine Bézierkurve mit drei Kontrollpunkten:
 
 ![](bezier3.png)
 
-Four points curve:
+Und eine Bézierkurve mit vier Kontrollpunkten:
 
 ![](bezier4.png)
 
-If you look closely at these curves, you can immediately notice:
+Ein etwas genauerer Blick auf diese Kurven offenbart uns einige interessante Eigenschaften:
 
-1. **Points are not always on curve.** That's perfectly normal, later we'll see how the curve is built.
-2. **The curve order equals the number of points minus one**.
-For two points we have a linear curve (that's a straight line), for three points -- quadratic curve (parabolic), for three points -- cubic curve.
-3. **A curve is always inside the [convex hull](https://en.wikipedia.org/wiki/Convex_hull) of control points:**
+1. **Kontrollpunkte müssen nicht auf der Kurve liegen.** Wir werden später sehen, wie genau die Bézierkurven konstruiert werden.
+2. **Die Ordnung der Kurve ist gleich die Anzahl der Kontrollpunkte minus eins**
+Aus zwei Kontrollpunkten erhalten wir eine gerade Linie, aus drei Punkten eine quadratische Kurve und aus vier Kontrollpunkten eine kubische Kurve.
+3. **Die Bézierkurve liegt immer innerhalb der [konvexen Hülle](https://de.wikipedia.org/wiki/Konvexe_Hülle) der Kontrollpunkte:**
 
     ![](bezier4-e.png) ![](bezier3-e.png)
 
-Because of that last property, in computer graphics it's possible to optimize intersection tests. If convex hulls do not intersect, then curves do not either. So checking for the convex hulls intersection first can give a very fast "no intersection" result. Checking the intersection or convex hulls is much easier, because they are rectangles, triangles and so on (see the picture above), much simpler figures than the curve.
+Von der letzten Eigenschaft können wir gebrauch machen, wenn wir Kurven auf Überschneidungen testen wollen. Überschneiden sich die konvexen Hüllen nicht, dann tun es die zugehörigen Bézierkurven auch nicht. Prüft man also zuerst ob keine Überschneidungen der konvexen Hüllen vorliegen, so hat man einen schnellen Ausschlusstest für die Kurvenüberschneidung. Da die konvexen Hüllen eine einfacherer Form haben als die Kurven selbst, ist hier ein schnellerer Test auf Überschneidungen möglich.
 
-The main value of Bezier curves for drawing -- by moving the points the curve is changing *in intuitively obvious way*.
+Einen großen Wert bieten Bézierkurven beim Erstellen von Zeichnungen. Verschiebt man die Kontrollpunkte, verändert die Kurve ihre Form in einer sehr intuitiven Art und Weise.
 
-Try to move control points using a mouse in the example below:
+Versuchen Sie die Kontrollpunkte im untenstehenden Beispiel mit der Maus zu verschieben und sehen Sie, was dabei passiert:
 
 [iframe src="demo.svg?nocpath=1&p=0,0,0.5,0,0.5,1,1,1" height=370]
 
-**As you can notice, the curve stretches along the tangential lines 1 -> 2 and 3 -> 4.**
+**Man kann feststellen, dass sich die Bézierkurve entlang der Tangenten zwischen 1 -> 2 und 3 -> 4 erstreckt.**
 
-After some practice it becomes obvious how to place points to get the needed curve. And by connecting several curves we can get practically anything.
-
-Here are some examples:
+Mit etwas Übung schafft man es schnell, die Punkte so zu platzieren, dass man die gewünschte Kurve erhält. Aus der Verbindung mehrerer Kurven kann man praktisch jedes Objekt modellieren, hier ein paar Beispiele:
 
 ![](bezier-car.png) ![](bezier-letter.png) ![](bezier-vase.png)
 
-## Maths
+## Die Mathematik dahinter
 
-A Bezier curve can be described using a mathematical formula.
+Bézierkurven werden durch vergleichsweise einfache Formeln beschrieben. Wir werden bald sehen, dass man diese nicht unbedingt kennen muss, aber zur Vollständigkeit schauen wir sie uns kurz an.
 
-As we'll see soon -- there's no need to know it. But for completeness -- here it is.
+Die Kontrollpunkte <code>P<sub>i</sub></code> lauten: Der erste Kontrollpunkt hat die Koordinaten <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, der zweite Kontrollpunkt: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, und so weiter. Die Koordinaten der Bézierkurve werden von Gleichungen beschrieben die vom Parameter `t` im Interval `[0, 1]` abhängen.
 
-Given the coordinates of control points <code>P<sub>i</sub></code>: the first control point has coordinates <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, the second: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, and so on, the curve coordinates are described by the equation that depends on the parameter `t` from the segment `[0,1]`.
-
-- The formula for a 2-points curve:
+- Die Formel für eine 2-Punktkurve lautet:
 
     <code>P = (1-t)P<sub>1</sub> + tP<sub>2</sub></code>
-- For three points:
+- Für eine 3-Punktkurve:
 
     <code>P = (1−t)<sup>2</sup>P<sub>1</sub> + 2(1−t)tP<sub>2</sub> + t<sup>2</sup>P<sub>3</sub></code>
-- For four points:
+- Für eine 4-Punktkurve:
 
     <code>P = (1−t)<sup>3</sup>P<sub>1</sub> + 3(1−t)<sup>2</sup>tP<sub>2</sub>  +3(1−t)t<sup>2</sup>P<sub>3</sub> + t<sup>3</sup>P<sub>4</sub></code>
 
-These are vector equations.
+Diese drei Gleichungen sind Vektorgleichungen.
 
-We can rewrite them coordinate-by-coordinate, for instance the 3-point curve:
+Wir können die Gleichungen auch für jede Koordinate einzeln aufschreiben. Die 3-Punktkurve wird dann zum Beispiel zu:
 
 - <code>x = (1−t)<sup>2</sup>x<sub>1</sub> + 2(1−t)tx<sub>2</sub> + t<sup>2</sup>x<sub>3</sub></code>
 - <code>y = (1−t)<sup>2</sup>y<sub>1</sub> + 2(1−t)ty<sub>2</sub> + t<sup>2</sup>y<sub>3</sub></code>
 
-Instead of <code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> we should put coordinates of 3 control points.
+Wir ersetzen dann <code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> durch die Koordinaten von unseren Kontrollpunkten.
 
-For instance, if control points are  `(0,0)`, `(0.5, 1)` and `(1, 0)`, the equations are:
+Lauten also zum Beispiel unsere Kontrollpunkte `(0, 0)`, `(0.5, 1)` und `(1, 0)`, werden unsere Gleichungen zu:
 
 - <code>x = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 0.5 + t<sup>2</sup> * 1 = (1-t)t + t<sup>2</sup> = t</code>
 - <code>y = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 1 + t<sup>2</sup> * 0 = 2(1-t)t = –t<sup>2</sup> + 2t</code>
 
-Now as `t` runs from `0` to `1`, the set of values `(x,y)` for each `t` forms the curve.
+Läuft nun unser Parameter `t` von `0` bis `1`, ein `(x,y)`-Wertepaar für jedes `t` beschreibt die Form der Kurve.
 
-That's probably too scientific, not very obvious why curves look like that, and how they depend on control points.
+Diese Beschreibung ist vielleicht nicht sehr intuitiv, denn es ist nicht sehr offensichtlich wie die resultierende Bézierkurve aussehen wird und wie die Position der Kontrollpunkte beeinflusst wird.
 
-So here's the drawing algorithm that may be easier to understand.
+Schauen wir uns daher einen Algorithmus an, der die Bézierkurve konstruiert und etwas intuitiver zugänglich ist.
 
-## De Casteljau's algorithm
+## De-Casteljau-Algorithmus
 
-[De Casteljau's algorithm](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm) is identical to the mathematical definition of the curve, but visually shows how it is built.
+Der [De-Casteljau-Algorithm](https://de.wikipedia.org/wiki/De-Casteljau-Algorithmus) ist identisch zur oben gegebenen mathematischen Definition, zeigt aber visuell, wie die Bézierkurve konstruiert wird.
 
-Let's see it on the 3-points example.
+Schauen wir uns die Funktionsweise des Algorithmusses anhand des 3-Punktbeispiels an. Zunächst eine kleine Demo und anschließend die Erklärungen.
 
-Here's the demo, and the explanation follow.
-
-Points can be moved by the mouse. Press the "play" button to run it.
+Die Punkte können mit der Maus verschoben werden. Drücken Sie den "Play"-Knopf um den Algorithmus ablaufen zu lassen.
 
 [iframe src="demo.svg?p=0,0,0.5,1,1,0&animate=1" height=370]
 
-**De Casteljau's algorithm of building the 3-point bezier curve:**
+**Der De-Casteljau-Algorithmus zur Konstruktion einer 3-Punkt-Bézierkurve:**
 
-1. Draw control points. In the demo above they are labeled: `1`, `2`, `3`.
-2. Build segments between control points 1 -> 2 -> 3. In the demo above they are <span style="color:#825E28">brown</span>.
-3. The parameter `t` moves from `0` to `1`. In the example above the step `0.05` is used: the loop goes over `0, 0.05, 0.1, 0.15, ... 0.95, 1`.
+1. Einzeichnen der Kontrollpunkte. In unserem Beispiel heißen diese `1`, `2` und `3`.
+2. Konstruiere Verbindungslinien zwischen den Kontrollpunkten 1 -> 2 und 2 -> 3. In unserem Beispiel in <span style="color:#825E28">braun</span> eingezeichnet.
+3. Der Parameter `t` läuft wieder von `0` bis `1`. In unserem Beispiel verwenden wir eine Schrittweite von `0.05`: `t` nimmt also die Werte `0, 0.05, 0.1, 0.15, ... 0.95, 1` an.
 
-    For each of these values of `t`:
+    Für jeden dieser Werte von `t`:
 
-    - On each <span style="color:#825E28">brown</span> segment we take a point located on the distance proportional to `t` from its beginning. As there are two segments, we have two points.
+    - Auf jedem der <span style="color:#825E28">braunen</span> Segmente suchen wir einen Punkt der um den Anteil `t` vom Anfang entfernt liegt. Da es zwei <span style="color:#825E28">braune</span> Segmente gibt, erhalten wir auch zwei Punkte.
 
-        For instance, for `t=0` -- both points will be at the beginning of segments, and for `t=0.25` -- on the 25% of segment length from the beginning, for `t=0.5` -- 50%(the middle), for `t=1` -- in the end of segments.
+        Zum Beispiel liegen für `t = 0` beide Punkte am Anfang der Segmente; für `t = 0.25` liegen die Punkte 25% der Segmentlänge vom Anfang entfernt; für `t = 0.5` in der Mitte der Segmente; und für `t = 1` am Ende der Segmente.
 
-    - Connect the points. On the picture below the connecting segment is painted <span style="color:#167490">blue</span>.
+    - Verbinde die so erhaltenen Punkte. In der folgenden Abbildung ist die Verbindungslinie in <span style="color:#167490">blau</span> eingezeichnet.
 
 
-| For `t=0.25`             | For `t=0.5`            |
+| Für `t=0.25`             | Für `t=0.5`            |
 | ------------------------ | ---------------------- |
 | ![](bezier3-draw1.png)   | ![](bezier3-draw2.png) |
 
-4. Now the <span style="color:#167490">blue</span> segment take a point on the distance proportional to the same value of `t`. That is, for `t=0.25` (the left picture) we have a point at the end of the left quarter of the segment, and for `t=0.5` (the right picture) -- in the middle of the segment. On pictures above that point is <span style="color:red">red</span>.
+4. Auf dem neuen <span style="color:#167490">blauen</span> Segment suchen wir einen Punkt der um den Anteil `t` vom Anfang entfernt liegt. Für `t = 0.25` (die linke Abbildung) erhalten wir einen Punkt ein Viertel der Segmentlänge vom Ende entfernt. Für `t = 0.5` (die rechte Abbildung) liegt der Punkt in der Segmentmitte. Der neue Punkt ist mit <span style="color:red">rot</span> in den Abbildungen eingezeichnet.
 
-5. As `t` runs from `0` to `1`, every value of `t` adds a point to the curve. The set of such points forms the Bezier curve. It's red and parabolic on the pictures above.
+5. Läuft nun `t` von `0` bis `1`, wird für jeden Wert von `t` ein Punkt der Kurve hinzugefügt. Alle diese Punkte zusammen bilden die Bézierkurve.
 
-That was a process for 3 points. But the same is for 4 points.
+Analog zu diesem Beispiel einer 3-Punktkurve, funktioniert auch die Konstruktion für eine 4-Punktkurve.
 
-The demo for 4 points (points can be moved by mouse):
+In der folgenden Demo können wieder die Punkte mit der Maus verschoben werden:
 
 [iframe src="demo.svg?p=0,0,0.5,0,0.5,1,1,1&animate=1" height=370]
 
-The algorithm:
+Der Algorithmus wird zu:
 
-- Control points are connected by segments: 1 -> 2, 2 -> 3, 3 -> 4. We have 3 <span style="color:#825E28">brown</span> segments.
-- For each `t` in the interval from `0` to `1`:
-    - We take points on these segments on the distance proportional to `t` from the beginning. These points are connected, so that we have two <span style="color:#0A0">green segments</span>.
-    - On these segments we take points proportional to `t`. We get one <span style="color:#167490">blue segment</span>.
-    - On the blue segment we take a point proportional to `t`. On the example above it's <span style="color:red">red</span>.
-- These points together form the curve.
+- Die vier Kontrollpunkte werden durch die drei <span style="color:#825E28">braunen</span> Segmente 1 -> 2, 2 -> 3 und 3 -> 4 verbunden.
+- Für jedes `t` aus dem Interval von `0` bis `1`:
+    - Suchen wir einen Punkt auf jedem Segment, der um den Anteil `t` vom Anfang entfernt liegt. Diese Punkte werden verbunden, so das wir zwei neue <span style="color:#0A0">grüne</span> Segmente erhalten.
+    - Auf diesen Segmenten suchen wir wieder Punkte die `t` vom Anfang entfernt liegen und wir erhalten ein neues <span style="color:#167490">blaues</span> Segment.
+    - Auf diesem <span style="color:#167490">blauen</span> Segment suchen wir wiederum einen Punkt der um `t` vom Anfang entfernt liegt. In unserem Beispiel ein <span style="color:red">roter</span> Punkt.
+- Diese Punkte zusammen bilden die Bézierkurve.
 
-The algorithm is recursive and can be generalized for any number of control points.
+Der Algorithmus arbeitet rekursiv und kann daher für eine beliebige Anzahl von Kontrollpunkten verallgemeinert werden.
 
-Given N of control points, we connect them to get initially N-1 segments.
+Haben wir `N` Kontrollpunkte vorliegen, verbinden wir diese und erhalten anfänglich `N - 1` Segmente.
 
-Then for each `t` from `0` to `1`:
-- Take a point on each of segment on the distance proportional to `t` and connect them -- there will be N-2 segments.
-- Take a point on each of these segments on the distance proportional to `t` and connect -- there will be N-3 segments, and so on...
-- Till we have one point. These points make the curve.
+Für jedes `t` von `0` bis `1`:
+- Suche auf jedem Segment einen Punkt der um den Anteil `t` vom Anfang entfernt liegt und verbinde diese; man erhält `N - 2` Segmente.
+- Wiederhole diesen Schritt, bis nur noch ein Punkt übrig bleibt. Diese Punkte bilden die Bézierkurve.
 
-Move examples of curves:
+Hier einige Beispiele:
 
 [iframe src="demo.svg?p=0,0,0,0.75,0.25,1,1,1&animate=1" height=370]
 
-With other points:
+Mit anderen Punkten:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1" height=370]
 
-Loop form:
+Eine Schleife:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,1,0.5,0&animate=1" height=370]
 
-Not smooth Bezier curve:
+Nicht stetige Bézierkurven:
 
 [iframe src="demo.svg?p=0,0,1,1,0,1,1,0&animate=1" height=370]
 
-As the algorithm is recursive, we can build Bezier curves of any order: using 5, 6 or more control points. But in practice they are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
+Da der Algorithmus rekursiv arbeitet können wir Bézierkurven jeder beliebiger Ordnung, mit 5, 6 oder mehr Kontrollpunkten konstruieren. Von praktischer Bedeutung sind jedoch nur solche mit 2-4 Kontrollpunkten. Komplexere Figuren werden durch Verknüpfung mehrerer Kurven erstellt. Diese sind einfacher zu konstruieren und zu berechnen.
 
-```smart header="How to draw a curve *through* given points?"
-We use control points for a Bezier curve. As we can see, they are not on the curve. Or, to be precise, the first and the last ones do belong to curve, but others don't.
+```smart header="Wie zeichnet man eine Linie durch *gegebene* Punkte?"
+Bézierkurven werden durch ihre Kontrollpunkte definiert. Mit der Ausnahme von linearen Bézierkurven, liegen die Kontrollpunkte nicht nur auf der Kurve selbst.
 
-Sometimes we have another task: to draw a curve *through several points*, so that all of them are on a single smooth curve. That task is called  [interpolation](https://en.wikipedia.org/wiki/Interpolation), and here we don't cover it.
+Möchten wir also eine durchgehende Kurve durch *einige gegebene* Punkte zeichnen sind Bézierkurven nicht geeignet. Diese Aufgabe heißt [Interpolation](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)), und wir gehen hier nicht näher darauf ein.
 
-There are mathematical formulas for such curves, for instance [Lagrange polynomial](https://en.wikipedia.org/wiki/Lagrange_polynomial).
-
-In computer graphics [spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation) is often used to build smooth curves that connect many points.
+Es gibt einige mathematische Verfahren zur [Polynominterpolation](https://de.wikipedia.org/wiki/Polynominterpolation) und in der Computergrafik verwendet man die [Spline-Interpolation](https://de.wikipedia.org/wiki/Spline-Interpolation) um viele Punkte durch eine optisch ansprechende Kurve zu verbinden.
 ```
 
-## Summary
+## Zusammenfassung
 
-Bezier curves are defined by their control points.
+Bézierkurven werden durch ihre Kontrollpunkte definiert. Wir haben uns zwei Möglichkeiten angeschaut um sie zu konstruieren:
 
-We saw two definitions of Bezier curves:
+1. Verwendung der Vektorgleichungen.
+2. Der intuitive Zeichnungsweg mit dem De-Casteljau-Algorithmus
 
-1. Using a mathematical formulas.
-2. Using a drawing process: De Casteljau's algorithm
+Vorteilhafte Eigenschaften von Bézierkurven:
 
-Good properties of Bezier curves:
+- Wir können geschwungene Linien mit der Maus zeichnen, indem wir Kontrollpunkte bewegen.
+- Komplexe Formen können erstellt werden, indem man mehrere Bézierkurven miteinander verbindet.
 
-- We can draw smooth lines with a mouse by moving around control points.
-- Complex shapes can be made of several Bezier curves.
+Verwendung:
 
-Usage:
-
-- In computer graphics, modeling, vector graphic editors. Fonts are described by Bezier curves.
-- In web development -- for graphics on Canvas and in the SVG format. By the way, "live" examples above are written in SVG. They are actually a single SVG document that is given different points as parameters. You can open it in a separate window and see the source: [demo.svg](demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1).
-- In CSS animation to describe the path and speed of animation.
+- In der Computergrafik und Modellierung, in Vektorgrafikeditoren und für viele Schriftarten.
+- In der Webentwicklung für Grafiken zum Beispiel im SVG-Format. Übrigens sind die obigen Live-Beispiele in SVG geschrieben. Es ist immer die selbe Datei der verschiedene Startpunkte als Parameter übergeben werden. Sie können die Datei in einem separaten Fenster öffnen und den Quelltext betrachten [demo.svg](demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1).
+- Bei CSS-Animationen um den Weg und die Geschwindigkeit der Animation zu kontrollieren.

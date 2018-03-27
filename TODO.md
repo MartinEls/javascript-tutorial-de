@@ -1,0 +1,1 @@
+bezier3-draw1.png contains a white artefact

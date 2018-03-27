@@ -62,7 +62,7 @@ Bei Übersetzungen von IT-Themen ins Deutsche begegnet man immer wieder Eigennam
 
 ## JavaScript Fundamentals
 
-Hello, world!
+[Hello, world!](1-js/02-first-steps/01-hello-world/article.md)
 
 [Code-Struktur](1-js/02-first-steps/02-structure/article.md)
 
@@ -270,7 +270,7 @@ Additional articles
 
 ## Animation
 
-Bezier curve
+[Bezierkurven](3-animation/1-bezier-curve/article.md)
 
 CSS-animations
 
