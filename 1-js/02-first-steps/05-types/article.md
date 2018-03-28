@@ -1,14 +1,14 @@
-# Data types
+# Datentypen
 
-A variable in JavaScript can contain any data. A variable can at one moment be a string and later receive a numeric value:
+Eine Variable in JavaScript kann beliebige Daten enthalten. Zu einem Zeitpunkt kann die Variable eine Zeichenkette enthalten und einen Augenblick später einen Zahlenwert:
 
 ```js
 // no error
-let message = "hello";
+let message = "Hallo";
 message = 123456;
 ```
 
-Programming languages that allow such things are called "dynamically typed", meaning that there are data types, but variables are not bound to any of them.
+Programmiersprachen die so etwas erlauben, heißen dynamisch typisiert. Das bedeutet, dass es zwar Datentypen gibt, eine Variable aber nicht auf einen davon festgelegt ist (anders als etwa in C oder Fortran).
 
 There are seven basic data types in JavaScript. Here we'll study the basics, and in the next chapters we'll talk about each of them in detail.
 

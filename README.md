@@ -73,7 +73,7 @@ Wortgruppen die im Englischen getrennt geschrieben werden, wie "HTML file", soll
 
 Variables
 
-Data types
+[Datentypen](1-js/02-first-steps/05-types/article.md)
 
 Type Conversions
 
@@ -85,7 +85,7 @@ Interaction: alert, prompt, confirm
 
 Conditional operators: if, '?'
 
-Logical operators
+[Logische Operatoren](1-js/02-first-steps/11-logical-operators/article.md)
 
 Loops: while and for
 

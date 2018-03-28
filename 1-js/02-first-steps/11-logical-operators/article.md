@@ -1,24 +1,27 @@
-# Logical operators
+# Logische Operatoren
 
-There are three logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT).
+Es gibt drei logische Operatoren in JavaScript:
+- ODER: `||` (OR)
+- UND: `&&` (AND) 
+- NICHT: `!` (NOT)
 
-Although they are called "logical", they can be applied to values of any type, not only boolean. The result can also be of any type.
+Obwohl sie ein "logisch" im Namen haben, können sie auf alle Variablentypen angewendet werden, nicht nur Boolesche Variablen. Die Rückgabewerte können ebenfalls ein beliebiger Variablentyp sein.
 
-Let's see the details.
+Aber schauen wir auf die Details.
 
-## || (OR)
+## ODER ||
 
-The "OR" operator is represented with two vertical line symbols:
+Der ODER-Operator (OR) wird durch zwei vertikale Linien dargestellt:
 
 ```js
 result = a || b;
 ```
 
-In classical programming, logical OR is meant to manipulate boolean values only. If any of its arguments are `true`, then it returns `true`, otherwise it returns `false`.
+In klassischen Programmiersprachen ist der ODER-Operator lediglich vorgesehen um mit Booleschen Variablen zu arbeiten. Wenn eines der Argumente den Wert `true` (WAHR) hat, ist der Rückgabewert auch `true`, ansonsten `false` (FALSCH).
 
-In JavaScript the operator is a little bit more tricky and powerful. But first let's see what happens with boolean values.
+In JavaScript ist der Operator ein wenig diffiziler und mächtiger, aber zuerst schauen wir uns die Verwendung mit Booleschen Werten an.
 
-There are four possible logical combinations:
+Es gibt vier mögliche Eingabekombinationen:
 
 ```js run
 alert( true || true );   // true
@@ -27,21 +30,21 @@ alert( true || false );  // true
 alert( false || false ); // false
 ```
 
-As we can see, the result is always `true` except for the case when both operands are `false`.
+Wir sehen, dass der Rückgabewert immer `true` ist, außer wenn beide Operanden den Wert `false` haben.
 
-If an operand is not boolean, then it's converted to boolean for the evaluation.
+Ist einer der Operanten kein Boolescher Wert, wird er zu einem Booleschen konvertiert, bevor die Operation durchgeführt wird.
 
-For instance, a number `1` is treated as `true`, a number `0` -- as `false`:
+Ein wichtiges Beispiel sind die Zahl `1` die als `true` und `0` die als `false` interpretiert werden:
 
 ```js run
-if (1 || 0) { // works just like if( true || false )
-  alert( 'truthy!' );
+if (1 || 0) { // Funktioniert wie if( true || false )
+  alert( 'Wahr!' );
 }
 ```
 
-Most of the time, OR `||` is used in an `if` statement to test if *any* of the given conditions is correct.
+Sehr oft wird die ODER-Operation `||` in `if`-Statements verwendet um zu überprüfen ob *irgendeine* der Bedingungen WAHR ist.
 
-For example:
+Zum Beispiel:
 
 ```js run
 let hour = 9;
@@ -49,55 +52,53 @@ let hour = 9;
 *!*
 if (hour < 10 || hour > 18) {
 */!*
-  alert( 'The office is closed.' );
+  alert( 'Unser Büro ist geschlossen.' );
 }
 ```
 
-We can pass more conditions:
+Durch Verkettung können auch mehr als zwei Eingaben verwendet werden:
 
 ```js run
 let hour = 12;
 let isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'The office is closed.' ); // it is the weekend
+  alert( 'Unser Büro ist geschlossen.' ); // Weil Wochenende ist
 }
 ```
 
-## OR seeks the first truthy value
+## ODER ermittelt den ersten wahren Wert
 
-The logic described above is somewhat classical. Now let's bring in the "extra" features of JavaScript.
+Unsere bisherigen Beobachtungen entsprechen ganz der klassischen Logik. JavaScript bringt aber noch einige interessante Aspekte neu hinzu.
 
-The extended algorithm works as follows.
-
-Given multiple OR'ed values:
+Nehmen wir an, wir haben mehrere ODER-Verknüpfte Werte:
 
 ```js
-result = value1 || value2 || value3;
+Ergebnis = Wert1 || Wert2 || Wert3;
 ```
 
-The OR `||` operator does the following:
+Der ODER-Operator `||` verhält sich nun wie folgt:
 
-- Evaluate operands from left to right.
-- For each operand, convert it to boolean. If the result is `true`, then stop and return the original value of that operand.
-- If all other operands have been assessed (i.e. all were `false`), return the last operand.
+- Die Operanden werden von links nach rechts Ausgewertet.
+- Jeder Operand wird in einen Booleschen Wert konvertiert. Wenn das Ergebnis `true` ist, wird die Auswertung gestoppt und der ursprüngliche (nicht konvertierte) Wert des Operanden zurückgegeben.
+- Wurden alle Operanden bearbeitet (und alle liefern `false` zurück), wird der der Originalwert des letzten Operanden zurückgegeben.
 
-A value is returned in its original form, without the conversion.
+Es wird immer der origignale, nicht konvertierte Wert des Operanden zurückgegeben.
 
-In other words, a chain of OR `"||"` returns the first truthy value or the last one if no such value is found.
+Anders formuliert, liefert eine Kette von ODER-Operationen `"||"` den ersten wahr aussehenden Wert zurück oder den letzten Wert, falls kein wahrer Wert existiert.
 
-For instance:
+Zum Beispiel:
 
 ```js run
-alert( 1 || 0 ); // 1 (1 is truthy)
-alert( true || 'no matter what' ); // (true is truthy)
+alert( 1 || 0 ); // 1 
+alert( true || 'Egal was hier steht' ); // true
 
-alert( null || 1 ); // 1 (1 is the first truthy value)
-alert( null || 0 || 1 ); // 1 (the first truthy value)
-alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+alert( null || 1 ); // 1 
+alert( null || 0 || 1 ); // 1 
+alert( undefined || null || 0 ); // 0 (alle false, letzter Wert wird zurückgegeben)
 ```
 
-That leads to some interesting usages compared to a "pure, classical, boolean-only OR".
+Dieses Verhalten erlaubt einige interessante Verwendungsmöglichkeiten, die über die klassische, logische Verwendung des Booleschen ODER hinaus gehen.
 
 1. **Getting the first truthy value from the list of variables or expressions.**
 
