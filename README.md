@@ -71,7 +71,7 @@ Wortgruppen die im Englischen getrennt geschrieben werden, wie "HTML file", soll
 
 [Moderne Spracheigenschaften: "use strict"](1-js/02-first-steps/03-strict-mode/article.md)
 
-Variables
+[Variablen](1-js/02-first-steps/04-variables/article.md)
 
 [Datentypen](1-js/02-first-steps/05-types/article.md)
 
