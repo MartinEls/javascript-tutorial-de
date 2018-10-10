@@ -1,36 +1,36 @@
-# Debugging in Chrome
+# Debuggen in Chrome
 
-Before writing more complex code, let's talk about debugging.
+Bevor wir komplexeren Code schreiben, lass uns über Debuggen sprechen.
 
-All modern browsers and most other environments support "debugging" -- a special UI in developer tools that makes finding and fixing errors much easier.
+Alle modernen Browser und die meisten anderen Umgebungen unterstützen "debuggen" -- eine spezielle UI in den Entwicklerwerkzeugen, welches es einfacher macht Fehler zu finden und zu beheben.
 
-We'll be using Chrome here, because it's probably the most feature-rich in this aspect.
+Wir werden hier Chrome verwenden, da es wahrscheinlich das Funktionsreichste in diesem Bereich ist.
 
-## The "sources" pane
+## Der "sources" Bereich
 
-Your Chrome version may look a little bit different, but it still should be obvious what's there.
+Deine Chrome Version sieht vielleicht etwas anders aus, aber es sollte trotzdem offensichtlich sein, was da ist.
 
-- Open the [example page](debugging/index.html) in Chrome.
-- Turn on developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
-- Select the `sources` pane.
+- Öffne die [Beispielseite](debugging/index.html) in Chrome.
+- Öffne die Entwicklerwerkzeugen mit `key:F12` (Mac: `key:Cmd+Opt+I`).
+- Öffne den `sources` Bereich.
 
-Here's what you should see if you are doing it for the first time:
+Folgendes sollten Sie sehen, wenn Sie dies zum ersten Mal machst:
 
 ![](chrome-open-sources.png)
 
-The toggler button <span class="devtools" style="background-position:-168px -76px"></span> opens the tab with files.
+Die Schaltfäche <span class="devtools" style="background-position:-168px -76px"></span> öffnet die Registerkarte mit den Dateien.
 
-Let's click it and select `index.html` and then `hello.js` in the tree view. Here's what should show up:
+Wir klicken darauf und wählen `index.html` aus und danach `hello.js` in der Baumansicht. Hier ist, was erscheinen sollte:
 
 ![](chrome-tabs.png)
 
-Here we can see three zones:
+Hier können wir 3 Bereiche erkennen:
 
-1. The **Resources zone** lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
-2. The **Source zone** shows the source code.
-3. The **Information and control zone** is for debugging, we'll explore it soon.
+1. Der **Ressourcen Bereich** listet HTML, JavaScript, CSS und andere Dateien auf, einschließlich Bilder die in der Seite eingebunden.
+2. Der **Source Bereich** zeigt den Source Code.
+3. Der **Information und Kontroll Bereich** ist für das Debuggen, wir werden ihn bald erkunden.
 
-Now you could click the same toggler <span class="devtools" style="background-position:-200px -76px"></span> again to hide the resources list and give the code some space.
+Jetzt können Sie auf die selbe Schaltfläche <span class="devtools" style="background-position:-200px -76px"></span> erneut klicken um die Ressourcen Liste zu verstecken und dem Code platz zu schaffen.
 
 ## Console
 
