@@ -4,11 +4,11 @@ Bevor wir komplexeren Code schreiben, lass uns über Debuggen sprechen.
 
 Alle modernen Browser und die meisten anderen Umgebungen unterstützen "debuggen" -- eine spezielle UI in den Entwicklerwerkzeugen, welches es einfacher macht Fehler zu finden und zu beheben.
 
-Wir werden hier Chrome verwenden, da er wahrscheinlich das Funktionsreichste in diesem Bereich ist.
+Wir werden hier Chrome verwenden, da er wahrscheinlich den Funktionsreichsten in diesem Bereich hat.
 
 ## Der "sources" Bereich
 
-Deine Chrome Version sieht vielleicht etwas anders aus, aber es sollte trotzdem offensichtlich sein, was da ist.
+Deine Chrome Version sieht vielleicht etwas anders aus, aber es sollte trotzdem offensichtlich sein, was es gibt.
 
 - Öffne die [Beispielseite](debugging/index.html) in Chrome.
 - Öffne die Entwicklerwerkzeugen mit `key:F12` (Mac: `key:Cmd+Opt+I`).
@@ -20,7 +20,7 @@ Folgendes sollten Sie sehen, wenn Sie dies zum ersten Mal machst:
 
 Die Schaltfäche <span class="devtools" style="background-position:-168px -76px"></span> öffnet die Registerkarte mit den Dateien.
 
-Wir klicken darauf und wählen `index.html` aus und danach `hello.js` in der Baumansicht. Hier ist, was erscheinen sollte:
+Wir klicken darauf und wählen `index.html` aus und danach `hello.js` in der Baumansicht. Danach sollte es etwa so bei Ihnen aussehen:
 
 ![](chrome-tabs.png)
 
@@ -30,7 +30,7 @@ Hier können wir 3 Bereiche erkennen:
 2. Der **Source Bereich** zeigt den Source Code.
 3. Der **Information und Kontroll Bereich** ist für das Debuggen, wir werden ihn bald erkunden.
 
-Jetzt können Sie auf die selbe Schaltfläche <span class="devtools" style="background-position:-200px -76px"></span> erneut klicken um die Ressourcen Liste zu verstecken und dem Code platz zu schaffen.
+Jetzt können Sie auf die selbe Schaltfläche <span class="devtools" style="background-position:-200px -76px"></span> erneut klicken um die Ressourcen Liste zu verstecken um dem Code platz zu schaffen.
 
 ## Console
 
@@ -38,23 +38,23 @@ Wenn wir  `Esc` drücken, dann öffnet sich darunter eine Console. Wir können d
 
 Nachdem eine Anweisung ausgeführt wurde, wird das Ergebnis darunter angezeigt.
 
-Als Beispiel, hier `1+2` ergibt  `3`, und `hello("debugger")`  liefert nichts, sodass das Ergebnis  `undefined` ist:
+Als Beispiel, hier `1+2` ergibt  `3`, und `hello("debugger")`  liefert nichts, daher ist das Ergebnis  `undefined`:
 
 ![](chrome-sources-console.png)
 
 ## Haltepunkte
 
- Lassen Sie uns untersuchen, was innerhalb des Codes der [Beispielseite](debugging/index.html) vor sich geht.. In `hello.js`, klicke auf die Zeilennummer  `4`. Ja, direkt auf die Zahl `4`, nicht im Code.
+ Lassen Sie uns untersuchen, was innerhalb des Codes der [Beispielseite](debugging/index.html) vor sich geht. In `hello.js`, klicke auf die Zeilennummer  `4`. Ja, direkt auf die Zahl `4`, nicht im Code.
 
-Herzlichen Glückwunsch! Sie haben einen Haltepunkt gesetzt. Bitte klicken sie auch auf die Nummer für Zeile `8`.
+Herzlichen Glückwunsch! Sie haben einen Haltepunkt gesetzt. Bitte klicken Sie auch auf die Nummer für Zeile `8`.
 
-Es sollte wie folgt aussehen (Blau markiert an welcher stelle sie klicken sollen):
+Es sollte wie folgt aussehen (Blau markiert an welcher stelle Sie klicken sollen):
 
 ![](chrome-sources-breakpoint.png)
 
-Ein*Haltepunkt* ist ein Punkt im Code an der der Debugger automatisch anhalten wird, während der JavaScript ausführung.
+Ein *Haltepunkt* ist ein Punkt im Code an der der Debugger automatisch anhalten wird, während der JavaScript ausführung.
 
-Währen der Code angehalten ist können wir die aktuellen Variablen untersuchen, ausführen Befehle in der Console etc. In anderen Worten, wir können es debuggen.
+Währen der Code angehalten ist können wir die aktuellen Variablen untersuchen, Befehle in der Console ausführen etc. In anderen Worten, wir können es debuggen.
 
 Wir können immer eine Liste von Haltepunkten im rechten Bereich finden. Dies ist nützlich, wenn wir viele Haltepunkte in verschiedenen Dateien haben. Das erlaubt uns:
 - Schnell zu einem Haltepunkt im Code zu springen (durch klicken auf ihn im rechten Bereich).
@@ -99,7 +99,7 @@ Bitte öffne die Dropdown-Listen für Informationen auf der rechten Seite  (mark
 
 1. **`Watch` -- zeigt aktuelle Werte für beliebige Ausdrücke an.**
 
-    Sie können das Plus anklicken `+`und einen Ausdruck eingeben. Der Debugger wird den Wert zu jedem Moment anzeigen, er wird automatisch neu berechnet während die Ausführung läuft.
+    Sie können das Plus anklicken `+` und einen Ausdruck eingeben. Der Debugger wird den Wert zu jedem Moment anzeigen, er wird automatisch neu berechnet während die Ausführung läuft.
 
 2. **`Call Stack` -- zeigt die verschachtelte Aufrufkette an.**
 
@@ -108,7 +108,7 @@ Bitte öffne die Dropdown-Listen für Informationen auf der rechten Seite  (mark
     Wenn Sie auf ein Stack Item klicken, springt der Debugger zum zugehörigen Code, und alle seine Variablen können ebenfalls untersucht werden.
 3. **`Scope` -- aktuelle Variablen.**
 
-    `Local` zeigt lokale funktions Variablen. Sie können ihre Werte auch direkt über dem Code hervorgehoben sehen .
+    `Local` zeigt lokale Funktionsvariablen. Sie können ihre Werte auch direkt über dem Code hervorgehoben sehen .
 
     `Global` hat globale Variablen (außerhalb von allen Funktionen).
 
@@ -116,7 +116,7 @@ Bitte öffne die Dropdown-Listen für Informationen auf der rechten Seite  (mark
 
 ## Verfolgung der Ausführung
 
-Nun ist es an der Zeit, das Skript zu verfolgen (*trace*).
+Nun ist es an der Zeit, das Skript zu verfolgen.
 
 Hierfür gibt es Schaltflächen im oberen rechten Bereich. Nehmen wir diese ins Visier.
 
@@ -130,7 +130,7 @@ Hier ist, was wir nach einem Klick darauf sehen können:
     Die Ausführung wurde fortgesetzt, erreicht einen anderen Haltepunkt innerhalb von `say()` und hält dort an. Werfen Sie einen Blick auf den  "Call stack" auf der rechten Seite. Es hat sich um einen weiteren Anruf erhöht. Wir sind nun innerhalb von `say()`.
 
 <span class="devtools" style="background-position:-137px -76px"></span> -- einen Schritt tun (den nächsten Befehl ausführen), aber *nicht in die Funktion hinein gehen*, Kurztaste `key:F10`.
-: Wenn wir es jetzt anklicken, ein `alert` wird angezeigt. Das Wichtige dabei ist `alert` kann jede Funktion sein, die Ausführung "geht darüber hinweg", es überspringt den Funktionsinhalt.
+: Wenn wir es jetzt anklicken, wird ein `alert` angezeigt. Das Wichtige dabei ist `alert` kann jede Funktion sein, die Ausführung "geht darüber hinweg", es überspringt den Funktionsinhalt.
 
 <span class="devtools" style="background-position:-72px -76px"></span> -- einen Schritt tun, Kurztaste `key:F11`.
 : Wie der Vorherige, allerdings "hineingehen" in geschachtelte Funktionen . Wenn Sie darauf klicken, werden alle Skript-Aktionen nacheinander ausgeführt.
@@ -142,7 +142,7 @@ Hier ist, was wir nach einem Klick darauf sehen können:
 : Diese Schaltfläche bewegt die Ausführung nicht. Sie aktiviert/deaktiviert nur alle Haltepunkte.
 
 <span class="devtools" style="background-position:-264px -4px"></span> -- aktivieren/deaktivieren der automatischen Pause im Falle eines Fehlers.
-: Ist dies aktiviert,und die Entwicklerwerkzeuge sind offen, ein Script Fehler führt zu einem automatischen Anhalten der Ausführung. Dann können wir die Variablen analysieren um zu sehen was falsch lief. Das heißt wenn unser Script mit einem Fehler stirbt, können wir den Debugger öffnen, diese Option aktivieren und die Seite neuladen um zu sehen an welcher Stelle es stirbt und was der Kontext an dieser Stelle ist..
+: Ist dies aktiviert, und die Entwicklerwerkzeuge sind offen, ein Script Fehler führt zu einem automatischen Anhalten der Ausführung. Dann können wir die Variablen analysieren um zu sehen was falsch lief. Das heißt wenn unser Script mit einem Fehler stirbt, können wir den Debugger öffnen, diese Option aktivieren und die Seite neuladen um zu sehen an welcher Stelle es stirbt und was der Kontext an dieser Stelle ist.
 
 ```smart header="Continue to here"
 Rechtsklick auf die Zeile öffnet das Kontext Menu mit einer großartigen Option mit dem Namen: "Continue to here".
@@ -163,9 +163,9 @@ for (let i = 0; i < 5; i++) {
 }
 ```
 
-Normalerweise sieht der Nutzer diese Ausgabe nicht, er ist in der Console. Um ihn zu sehen, öffne entweder den Console Bereich in den Entwicklerwerkzeugen oder drücke `key:Esc` während Sie sich in einer anderen Registerkarte befinden: dies öffnet die Console an der Unterseite.
+Normalerweise sieht der Nutzer diese Ausgabe nicht, sie erscheint in der Console. Um sie zu sehen, öffne entweder den Console Bereich in den Entwicklerwerkzeugen oder drücke `key:Esc` während Sie sich in einer anderen Registerkarte befinden: dies öffnet die Console an der Unterseite.
 
-Wenn wir genügend Logging in unserem Code haben, dann können wir sehen, was in den Datensätzen vor sich geht, ohne den Debugger..
+Wenn wir genügend Logging in unserem Code haben, dann können wir sehen, was in den Datensätzen vor sich geht, ohne den Debugger.
 
 ## Übersicht
 
@@ -174,7 +174,7 @@ Wie wir sehen können, gibt es drei Hauptmöglichkeiten ein Script zu unterbrech
 2. Das `debugger` Statement.
 3. Ein Fehler (wenn die Entwicklerwerkzeuge geöffnet sind und die Schaltfläche <span class="devtools" style="background-position:-264px -4px"></span> auf "on" ist)
 
-Dann können wir Variablen untersuchen und weitermachen, um zu sehen , wo die Ausführung falsch läuft.
+Dann können wir Variablen untersuchen und weitermachen, um zu sehen, wo die Ausführung falsch läuft.
 
 Es gibt noch viel mehr Möglichkeiten in den Entwicklerwerkzeugen als hier beschrieben sind. Das vollständige Handbuch finden Sie unter <https://developers.google.com/web/tools/chrome-devtools>.
 
