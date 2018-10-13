@@ -42,28 +42,28 @@ Als Beispiel, hier `1+2` ergibt  `3`, und `hello("debugger")`  liefert nichts, s
 
 ![](chrome-sources-console.png)
 
-## Breakpoints
+## Haltepunkte
 
  Lassen Sie uns untersuchen, was innerhalb des Codes der [Beispielseite](debugging/index.html) vor sich geht.. In `hello.js`, klicke auf die Zeilennummer  `4`. Ja, direkt auf die Zahl `4`, nicht im Code.
 
-Herzlichen Glückwunsch! Sie haben einen Breakpoint gesetzt. Bitte klicken sie auch auf die Nummer für Zeile `8`.
+Herzlichen Glückwunsch! Sie haben einen Haltepunkt gesetzt. Bitte klicken sie auch auf die Nummer für Zeile `8`.
 
 Es sollte wie folgt aussehen (Blau markiert an welcher stelle sie klicken sollen):
 
 ![](chrome-sources-breakpoint.png)
 
-Ein*breakpoint* ist ein Punkt im Code an der der Debugger automatisch anhalten wird, während der JavaScript ausführung.
+Ein*Haltepunkt* ist ein Punkt im Code an der der Debugger automatisch anhalten wird, während der JavaScript ausführung.
 
 Währen der Code angehalten ist können wir die aktuellen Variablen untersuchen, ausführen Befehle in der Console etc. In anderen Worten, wir können es debuggen.
 
-Wir können immer eine Liste von Breakpoints im rechten Bereich finden. Dies ist nützlich, wenn wir viele Breakpoints in verschiedenen Dateien haben. Das erlaubt uns:
-- Schnell zu einem Breakpoint im Code zu springen (durch klicken auf ihn im rechten Bereich).
-- Temporär einen Breakpoint auszuschalten indem wir in abwählen.
-- Den Breakpoint zu entfernen durch rechts klicken und entfernen auswählen .
+Wir können immer eine Liste von Haltepunkten im rechten Bereich finden. Dies ist nützlich, wenn wir viele Haltepunkte in verschiedenen Dateien haben. Das erlaubt uns:
+- Schnell zu einem Haltepunkt im Code zu springen (durch klicken auf ihn im rechten Bereich).
+- Temporär einen Haltepunkt auszuschalten indem wir in abwählen.
+- Den Haltepunkt zu entfernen durch rechts klicken und entfernen auswählen .
 - ...Und so weiter.
 
 ```smart header="Conditional breakpoints"
-*Rechts-Klick* auf die Zeilennummer erlaubt es uns ein *bedingten* Breakpoint. Er wird nur ausgelöst wenn der gegebene  Ausdruck wahr ist.
+*Rechts-Klick* auf die Zeilennummer erlaubt es uns ein *bedingten* Haltepunkt. Er wird nur ausgelöst wenn der gegebene  Ausdruck wahr ist.
 
 Das ist praktisch, wenn wir nur für einen bestimmten Variablenwert oder für bestimmte Funktionsparameter anhalten müssen.
 ```
@@ -91,7 +91,7 @@ Das ist sehr praktisch, wenn wir uns in einem Code-Editor befinden und nicht zum
 
 In unserem Beispiel, `hello()`  wir währen des Seitenladens aufgerufen, so das der einfachste Weg ist um den Debugger zu aktivieren, das Neuladen der Seite ist. Also lass uns  `key:F5` drücken (Windows, Linux) oder `key:Cmd+R` (Mac).
 
-Ist der Breakpoint gesetzt, hält die Ausführung in der 4 Zeile an:
+Ist der Haltepunkt gesetzt, hält die Ausführung in der 4 Zeile an:
 
 ![](chrome-sources-debugger-pause.png)
 
@@ -121,13 +121,13 @@ Nun ist es an der Zeit, das Skript zu verfolgen (*trace*).
 Hierfür gibt es Schaltflächen im oberen rechten Bereich. Nehmen wir diese ins Visier.
 
 <span class="devtools" style="background-position:-7px -76px"></span> -- die Ausführung weiter fortsetzen,  Kurztaste `key:F8`.
-: Setzt die Ausführung fort. Gibt es keine weiteren Breakpoints, wird die Ausführung einfach fortgesetzt und der Debugger verliert die Kontrolle.
+: Setzt die Ausführung fort. Gibt es keine weiteren Haltepunkte, wird die Ausführung einfach fortgesetzt und der Debugger verliert die Kontrolle.
 
 Hier ist, was wir nach einem Klick darauf sehen können:
 
 ![](chrome-sources-debugger-trace-1.png)
 
-    Die Ausführung wurde fortgesetzt, erreicht einen anderen Breakpoint innerhalb von `say()` und hält dort an. Werfen Sie einen Blick auf den  "Call stack" auf der rechten Seite. Es hat sich um einen weiteren Anruf erhöht. Wir sind nun innerhalb von `say()`.
+    Die Ausführung wurde fortgesetzt, erreicht einen anderen Haltepunkt innerhalb von `say()` und hält dort an. Werfen Sie einen Blick auf den  "Call stack" auf der rechten Seite. Es hat sich um einen weiteren Anruf erhöht. Wir sind nun innerhalb von `say()`.
 
 <span class="devtools" style="background-position:-137px -76px"></span> -- einen Schritt tun (den nächsten Befehl ausführen), aber *nicht in die Funktion hinein gehen*, Kurztaste `key:F10`.
 : Wenn wir es jetzt anklicken, ein `alert` wird angezeigt. Das Wichtige dabei ist `alert` kann jede Funktion sein, die Ausführung "geht darüber hinweg", es überspringt den Funktionsinhalt.
@@ -138,8 +138,8 @@ Hier ist, was wir nach einem Klick darauf sehen können:
 <span class="devtools" style="background-position:-104px -76px"></span> -- fortsetzen der Ausführung bis zum Ende der aktuellen Funktion, Kurztaste `key:Shift+F11`.
 : Die Ausführung stoppt an der aller letzten Zeile der aktuellen Funktion. Dies ist nett wenn man ausversehen eine verschachtelte Funktion aufgerufen hat <span class="devtools" style="background-position:-72px -76px"></span>, diese interessiert uns aber nicht, und wir wollen diese so schnell wie möglich wieder verlassen.
 
-<span class="devtools" style="background-position:-7px -28px"></span> -- aktivieren/deaktivieren aller Breakpoints.
-: Diese Schaltfläche bewegt die Ausführung nicht. Sie aktiviert/deaktiviert nur alle Breakpoints.
+<span class="devtools" style="background-position:-7px -28px"></span> -- aktivieren/deaktivieren aller Haltepunkte.
+: Diese Schaltfläche bewegt die Ausführung nicht. Sie aktiviert/deaktiviert nur alle Haltepunkte.
 
 <span class="devtools" style="background-position:-264px -4px"></span> -- aktivieren/deaktivieren der automatischen Pause im Falle eines Fehlers.
 : Ist dies aktiviert,und die Entwicklerwerkzeuge sind offen, ein Script Fehler führt zu einem automatischen Anhalten der Ausführung. Dann können wir die Variablen analysieren um zu sehen was falsch lief. Das heißt wenn unser Script mit einem Fehler stirbt, können wir den Debugger öffnen, diese Option aktivieren und die Seite neuladen um zu sehen an welcher Stelle es stirbt und was der Kontext an dieser Stelle ist..
@@ -147,7 +147,7 @@ Hier ist, was wir nach einem Klick darauf sehen können:
 ```smart header="Continue to here"
 Rechtsklick auf die Zeile öffnet das Kontext Menu mit einer großartigen Option mit dem Namen: "Continue to here".
 
-Dies ist Nützlich wenn wir mehrere Schritte vorwärts wollen, aber wir zu faul sind um Breakpoints zu setzten.
+Dies ist Nützlich wenn wir mehrere Schritte vorwärts wollen, aber wir zu faul sind um Haltepunkte zu setzten.
 ```
 
 ## Logging
@@ -170,7 +170,7 @@ Wenn wir genügend Logging in unserem Code haben, dann können wir sehen, was in
 ## Übersicht
 
 Wie wir sehen können, gibt es drei Hauptmöglichkeiten ein Script zu unterbrechen:
-1. Ein breakpoint.
+1. Ein Haltepunkt.
 2. Das `debugger` Statement.
 3. Ein Fehler (wenn die Entwicklerwerkzeuge geöffnet sind und die Schaltfläche <span class="devtools" style="background-position:-264px -4px"></span> auf "on" ist)
 
