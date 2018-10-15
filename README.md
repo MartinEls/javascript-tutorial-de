@@ -99,7 +99,7 @@ JavaScript specials
 
 ## Code quality
 
-Debugging in Chrome
+[Debuggen in Chrome](1-js/03-code-quality/01-debugging-chrome/article.md)
 
 Coding style
 
